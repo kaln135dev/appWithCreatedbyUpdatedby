@@ -1,0 +1,31 @@
+{% extends 'mainapp/layout.html' %}
+
+{% block title %}Index{% endblock title %}
+
+
+{% block header %}
+<h1 class="display-4 text-primary">Dynamic Forms</h1>
+<p>※以下のレコードを削除します。</p>
+{% endblock header %}
+
+
+{% block content %}
+    <table class="table">
+        <tr><th>ID</th><td>{{ obj.id }}</td></tr>
+        <tr><th>main_name</th><td>{{ obj.main_name }}</td></tr>
+        <tr><th>category</th><td>{{ obj.category.category_name_abbreviation }}</td></tr>
+        <tr><th>item_one</th><td>{{ obj.item_one.item_name }}</td></tr>
+        <tr><th>item_two</th><td>{{ obj.item_two.item_name }}</td></tr>
+        <tr><th>created_at</th><td>{{ obj.created_at }}</td></tr>
+        <tr><th>created_by</th><td>{{ obj.created_by }}</td></tr>
+        <tr><th>updated_at</th><td>{{ obj.updated_at }}</td></tr>
+        <tr><th>updated_by</th><td>{{ obj.updated_by }}</td></tr>
+        <form action="{% url 'mainapp:delete' id %}" method="POST">
+            {% csrf_token %}
+            <tr><th></th><td>
+                <input type="submit" value="click" class="btn btn-primary">
+            </td></tr>
+        </form>
+    </table>
+</form>
+{% endblock content %}
